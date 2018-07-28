@@ -18,6 +18,7 @@ class Solution {
     // 當兩個數列個數的和是奇數時，中位數的index是(k-1)
     // 當和是偶數時，兩個中位數的index分別是(k-1)和k
     const int k = (nums1_len + nums2_len + 1) / 2;
+
     int l = 0;
     int r = nums1_len;
 

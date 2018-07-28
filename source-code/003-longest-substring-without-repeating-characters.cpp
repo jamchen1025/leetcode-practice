@@ -6,6 +6,9 @@ using namespace std;
 class Solution {
  public:
   int lengthOfLongestSubstring(string s) {
+    // 記錄第一個不重複的字元位置
+    // 用map紀錄字元目前出現過的最右邊的index
+    // 用i減第一個不重複的字元位置，得出最長不重複序列
     unordered_map<char, int> m;
     int max_len = 0;
     int last_repeat_index = -1;
