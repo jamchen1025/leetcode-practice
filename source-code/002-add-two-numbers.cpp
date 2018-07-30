@@ -1,3 +1,20 @@
+/********************************************************************************** 
+題目：
+https://leetcode.com/problems/add-two-numbers/description/
+You are given two non-empty linked lists representing two non-negative integers.
+The digits are stored in reverse order and each of their nodes contain a single digit.
+Add the two numbers and return it as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+Example:
+Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 0 -> 8
+Explanation: 342 + 465 = 807.
+**********************************************************************************
+想法：
+利用carry記錄sum的進位
+利用ListNode** n來修改ListNode的值同時移動到下一點
+**********************************************************************************/
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -43,39 +60,33 @@ void DisplayList(ListNode* ptr) {
 class Solution {
  public:
   ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-    ListNode* root = NULL;
-    ListNode** child = &root;
-    ListNode* n = NULL;
-    int carry = 0, sum = 0;
+    int carry = 0;
+    int sum = 0;
+    ListNode* root;
+    ListNode** n = &root;
     while (l1 != NULL && l2 != NULL) {
       sum = l1->val + l2->val + carry;
-      n = new ListNode(sum % 10);
       carry = sum / 10;
-      *child = n;
-      child = &(n->next);
-
+      *n = new ListNode(sum % 10);
+      n = &(*n)->next;
       l1 = l1->next;
       l2 = l2->next;
     }
 
-    ListNode* left = (l1 == NULL) ? l2 : l1;
-    while (left != NULL) {
-      sum = left->val + carry;
-      n = new ListNode(sum % 10);
+    ListNode* rest = (l1 != NULL) ? l1 : l2;
+    while (rest != NULL) {
+      sum = rest->val + carry;
       carry = sum / 10;
-      *child = n;
-      child = &(n->next);
-
-      left = left->next;
+      *n = new ListNode(sum % 10);
+      n = &(*n)->next;
+      rest = rest->next;
     }
 
     if (carry != 0) {
-      n = new ListNode(carry);
-      *child = n;
+      *n = new ListNode(carry);
     }
-
     return root;
-  };
+  }
 };
 
 int main() {
