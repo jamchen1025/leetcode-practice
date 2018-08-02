@@ -1,3 +1,21 @@
+/**********************************************************************************
+題目：
+https://leetcode.com/problems/longest-palindromic-substring/description/
+Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
+Example 1:
+Input: "babad"
+Output: "bab"
+Note: "aba" is also a valid answer.
+Example 2:
+Input: "cbbd"
+Output: "bb"
+**********************************************************************************
+想法：
+for迴圈從頭開始尋找
+回文有分aba和abba兩種，所以找回文時要分別找這兩種的長度，
+紀錄最長的回傳
+* 記得在findPalindrome裡面比完大小回傳就好了...
+**********************************************************************************/
 #include <iostream>
 #include <string>
 
