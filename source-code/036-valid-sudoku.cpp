@@ -19,16 +19,16 @@ class Solution {
         }
         int v = board[i][j] - '0' - 1;
 
-        if (col[i][v] == true) {
+        if (row[i][v] == true) {
           return false;
         } else {
-          col[i][v] = true;
+          row[i][v] = true;
         }
 
-        if (row[j][v] == true) {
+        if (col[j][v] == true) {
           return false;
         } else {
-          row[j][v] = true;
+          col[j][v] = true;
         }
 
         int cube_i = i / 3;

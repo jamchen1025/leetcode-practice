@@ -12,7 +12,9 @@ class Solution {
     int len = (int)board.size();
     for (int i = 0; i < len; ++i) {
       for (int j = 0; j < len; ++j) {
+
         if (board[i][j] == '.') {
+
           for (char c = '1'; c <= '9'; ++c) {
             if (isValid(board, i, j, c) == true) {
               board[i][j] = c;
@@ -23,8 +25,10 @@ class Solution {
               }
             }
           }
+          
           return false;
         }
+
       }
     }
     return true;
@@ -32,14 +36,14 @@ class Solution {
 
   bool isValid(vector<vector<char>>& board, int col, int row, char c) {
     for (int i = 0; i < board.size(); ++i) {
-      if (board[col][i] != '.' && board[col][i] == c) {
+      if (board[row][i] != '.' && board[row][i] == c) {
         return false;
       }
-      if (board[i][row] != '.' && board[i][row] == c) {
+      if (board[i][col] != '.' && board[i][col] == c) {
         return false;
       }
 
-      char cube_c = board[3 * (col / 3) + i % 3][3 * (row / 3) + i / 3];
+      char cube_c = board[3 * (row / 3) + i % 3][3 * (col / 3) + i / 3];
       if (cube_c != '.' && cube_c == c) {
         return false;
       }
